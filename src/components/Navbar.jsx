@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import NavItems from './NavItems';
 import {Flex} from './elements';
@@ -18,20 +19,20 @@ const NavContainer = styled(Flex)`
   background: ${({theme: {bgColor}}) => bgColor};
 `;
 
-export class Navbar extends Component {
-  render() {
-
-    const {
-      theme
-    } = this.props;
-
-    return (
-      <NavContainer theme={theme}>
-        <NavLogo textColor={theme.textColor}>logo</NavLogo>
-        <NavItems {...this.props} />
-      </NavContainer>
-    );
-  }
+const Navbar = (props, {
+  getTheme
+}) => {
+  const theme = getTheme();
+  return (
+    <NavContainer theme={theme}>
+      <NavLogo textColor={theme.textColor}>logo</NavLogo>
+      <NavItems {...props} />
+    </NavContainer>
+  );
 }
 
-export default Navbar
+Navbar.contextTypes = {
+  getTheme: PropTypes.func.isRequired
+};
+
+export default Navbar;

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import {Flex} from './elements';
 
@@ -21,13 +20,9 @@ const NavItemsContainer = styled(Flex)`
 `;
 
 const NavItems = ({
+  theme,
   changeTheme
-}, {
-  getTheme
 }) => {
-
-  const theme = getTheme();
-
   return (
     <NavItemsContainer>
       <ChangeThemeButton
@@ -37,10 +32,6 @@ const NavItems = ({
       </ChangeThemeButton>
     </NavItemsContainer>
   );
-};
-
-NavItems.contextTypes = {
-  getTheme: PropTypes.func.isRequired
 };
 
 export default NavItems;
